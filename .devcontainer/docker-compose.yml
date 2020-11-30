@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes: 
+      - ..:/workspace:cached
+    command: zsh -c "while sleep 1000; do :; done"
+  database:
+    image: postgres:12
+    restart: always    
+    ports:
+      - 4041:5432
+    environment:
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: bot
